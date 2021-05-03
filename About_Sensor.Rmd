@@ -1,0 +1,61 @@
+---
+title: | 
+    ![](C:/CEEW/Analysis/Purple_air/Scripts/Sensor_Alert/Images/PA_logo.png){width=1in}
+    About Sensor Alert
+author: "Adeel Khan"
+date:  "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+## Loading Relevant packages
+library(AirSensor);library(MazamaSpatialUtils)
+library(lubridate);library(dplyr);library(Metrics);library(caret)
+library(tidyverse);library(leaflet);library(DT);library(tidygeocoder);library(plotly)
+```
+
+## Summary {.tabset .tabset-fade .tabset-pills}
+
+### Project Sensors
+```{r,echo=F}
+## Adding Spatial Data file
+initializeMazamaSpatialUtils("C:/CEEW/Analysis/Purple_air/Spatial_data")
+## Creating the pas object
+pas <- pas_createNew(countryCodes = "IN",baseUrl = 'https://www.purpleair.com/json?all=true',
+                     lookbackDays = 30,includePWFSL = FALSE)
+## Selecting Project based Sensors
+## Visualizing the table
+DT::datatable(pas)
+```
+
+### About 
+
+#### **Project Sensors** 
+
+This will give you a synoptic data view of the Sensors based on
+Projects. You can filter the content based on the project like NASA, UTN or SAMOSA. You can also filter sensors based on city, district and state. One can find the number of sensors under each project and also can download the content in formats like .csv,excel and PDF. 
+
+
+#### **Map**
+
+The map provides an interactive interface to look at the distribution of
+Sensors. The [AQI](https://app.cpcbccr.com/AQI_India/) is based on average PM2.5 value in last 1 day. You can also click on any sensors to get synoptic information about the specific sensor. 
+
+#### **Inactive Sensors **
+
+This shows you the list of Sensors which are inactive for more than 24 hours and their respective information. 
+
+#### **Performance **
+
+Purple Air sensors have two channels i.e Channel A and Channel B. This provides you hourly aggregate Performance (R2 and RMSE) of sensors in last 30 days. Observations provides you number of values in last 30 days for a sensor. Ideally observations should be 720 (24 *30). You can do a filter based on R2 or RMSE to see how the sensors are performing in last 30 days. 
+
+#### **Visualization **
+
+Visualization allows you to compare the sensors in districts and states through the [Box plot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) . Double click on the State legend to see the box plot for a specific state. Then you can add different states by clicking on State legend. 
+
+****
+
+<p style="color:red"> For any query or suggestions feel free to reach out at : </p> adeel.khan@ceew.in
+

@@ -1,0 +1,180 @@
+---
+title: | 
+    ![](C:/CEEW/Analysis/Purple_air/Scripts/Sensor_Alert/Images/PA_logo.png){width=1in}
+    Sensor Alert Report
+author: "Adeel Khan"
+date:  "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+## Loading Relevant packages
+library(AirSensor);library(MazamaSpatialUtils)
+library(lubridate);library(dplyr);library(Metrics);library(caret)
+library(tidyverse);library(leaflet);library(DT);library(tidygeocoder);library(plotly)
+```
+
+## Summary {.tabset .tabset-fade .tabset-pills}
+
+### Project Sensors
+```{r,echo=F}
+## Adding Spatial Data file
+initializeMazamaSpatialUtils("C:/CEEW/Analysis/Purple_air/Spatial_data")
+## Creating the pas object
+pas <- pas_createNew(countryCodes = "IN",baseUrl = 'https://www.purpleair.com/json?all=true',
+                     lookbackDays = 30,includePWFSL = FALSE)
+## Geolocating from the latitude and longitude
+Geolocation <- reverse_geo(
+    lat = pas$latitude,
+    long = pas$longitude,
+    method = "osm",
+    full_results = T
+)
+## Adding in the pas object
+pas$City <- Geolocation$city
+pas$District <- Geolocation$state_district
+pas$State <- Geolocation$state
+pas$lastSeen <- strftime(with_tz(pas$lastSeenDate,tz="Asia/Kolkata"),
+                     format="%Y-%m-%d %H:%M")
+
+## Selecting Project based Sensors
+pas_subset <- pas %>% pas_filter(grepl('NASA',label)||grepl('UTN',label),!grepl("B",label))%>%select(label,lastSeen,City,District,State,pm25_1hr,pm25_1day,pm25_1week,temperature,humidity)
+## Visualizing the table
+DT::datatable(pas_subset)
+```
+
+
+### Map 
+```{r,echo=F}
+## Adding Colores
+colores <- c('darkgreen','green','yellow', 'orange','orangered','darkred')
+## Creating Bins
+risk.bins <-c(0,30, 60,90,120,250,Inf) 
+## Creating the Pallete based on Bin and Colors
+risk.pal <- colorBin( colores, bins=risk.bins, na.color = "#aaff56")
+## Creating Labels based on India AQI
+labels=c("Good","Satifactory","Moderate","Poor","Very Poor","Severe")
+
+## Updated the PAS object
+pas_updated <- pas %>% pas_filter(!grepl("B",label))%>%
+    mutate(TempC= (temperature-32)*0.55)
+## Now Plotting the pas object by giving proper pop up and label
+leaflet(pas_updated) %>%
+    addProviderTiles(providers$CartoDB.Positron) %>%
+    addCircleMarkers(stroke = F, opacity = 0.8,weight = 4,radius = 10,
+                     color=~risk.pal(pm25_1day),
+                     popup = paste0("<b>", pas$label, "</b><br/>", 
+                                    "temperature = ", 
+                                    round(pas_updated$TempC, 0), "°C<br/>", "humidity = ", 
+                                    round(pas_updated$humidity, 0), "%<br/>","last Seen = ",
+                                    pas$lastSeen,"<br/>","pm25_1hr = ",
+                                    round(pas_updated$pm25_1hr, 1), " µg/m3<br/>", "pm25_1day = ", 
+                                    round(pas_updated$pm25_1day, 1), " µg/m3<br/>","pm25_1week = ",
+                                    round(pas_updated$pm25_1week, 1), " µg/m3<br/>"))%>%
+    addLegend(labels = labels,colors =colores , "bottomright",title = "AQI (Last 1Day)")
+
+
+```
+
+### Inactive Sensors
+```{r,echo=F}
+## Finding the Inactive Sensors based on Last Seen 
+Inactive_Sensor <- pas %>% filter(!grepl("B",label)) %>% filter(lastSeenDate <Sys.Date()-1)%>%
+        select(label,lastSeen,City,District,State,latitude,longitude) %>%
+    arrange(lastSeen)
+## Visualizing the Data frame
+DT::datatable(Inactive_Sensor)
+```
+
+
+### Performance 
+```{r,echo=F}
+
+## Creating the Pas Study Area object
+pas_study_area <- pas %>% 
+    pas_filter(grepl('NASA',label)|grepl('UTN',label),!grepl("B",label))
+
+### Getting the names of all the sensors within our study area
+a <- pas_getLabels(pas = pas_study_area) 
+#length(a)
+## Defining the start and end date (We are running the Script every month)
+start_date <- Sys.Date() -30
+end_date <- Sys.Date()
+Sensor_Compiled <- c()
+### Writing a loop to get all our sensors data, process it and save it in the local folder
+i <- 1
+for (i in 1:length(a)) {
+    try ({
+        ## Getting the data for the station with in the time frame
+        example_pat <- pat_createNew(
+            pas = pas,
+            label = a[i],
+            startdate = start_date,
+            enddate = end_date,
+            verbose = TRUE,
+            timezone = "Asia/Kolkata"
+        )
+        # Create aggregation function
+        FUN_mean <- function(x) mean(x, na.rm = TRUE)
+        ## We convert the minute data in 30 minutes aggregate, change the time zone to Asia and convert
+        ## temperature into Celcius
+        Sensor_daily <- example_pat %>%pat_aggregate(count=30,unit="minutes") %>%
+            pat_extractData() %>%
+            mutate(date =with_tz(datetime,tz = "Asia/Kolkata"))%>%
+            mutate(TempC= (temperature-32)*0.55) %>%
+            select(date,pm25_A,pm25_B,humidity,TempC)%>%
+            group_by(date = cut(date, breaks = "hour")) %>% 
+            summarise(across(everything(), list(mean),na.rm=T))
+        
+        # Giving the proper Column names to the dataframe
+        colnames(Sensor_daily) <- c("Date","PM25_A","PM25_B","Humidity","Temperature")
+        
+        ## Adding the Latitude and Longitude, Sensor Name and State,District  into the dataframe
+        Sensor_daily$lat <- as.list(pas %>% pas_filter(label==a[i]) %>% select(latitude))$latitude
+        Sensor_daily$long <- as.list(pas %>% pas_filter(label==a[i]) %>% select(longitude))$longitude
+        Sensor_daily$Sensor_Name <- as.list(pas %>% pas_filter(label==a[i]) %>% select(label))$label
+        Sensor_daily$State <- as.list(pas %>% pas_filter(label==a[i]) %>% select(State))$State
+        Sensor_daily$City <- as.list(pas %>% pas_filter(label==a[i]) %>% select(City))$City
+        Sensor_daily$District <- as.list(pas %>% pas_filter(label==a[i]) %>% select(District))$District
+        
+        if (i==1){Sensor_Compiled = Sensor_daily} else{
+            Sensor_Compiled <- rbind(Sensor_Compiled,Sensor_daily)
+        }
+        
+        #print(i)  
+    },silent = F)
+    
+}
+
+## Adding Sensor Performance and sorting it based on RMSE
+Results <- Sensor_Compiled %>%drop_na(PM25_A,PM25_B)%>%
+    group_by(Sensor_Name,State,District,City) %>%
+    summarise(RMSE= round(rmse(PM25_A,PM25_B),2),
+              R2 = round(R2(PM25_A,PM25_B),3),
+              Observations =n()) %>%
+    select(Sensor_Name,R2,RMSE,Observations,City,District,State)%>%
+    arrange(RMSE)
+
+## Visualizing the Results
+datatable(Results)
+```
+
+### Visualization
+```{r,echo=F}
+## Selecting only Sensors with RMSE <30 
+Sensors_good <- Results %>% filter(RMSE <30)%>%ungroup()%>% select(Sensor_Name)
+## State Names
+State <- unique(Sensor_Compiled$State)
+## Xform is done to sort the x-axis
+xform <- list(categoryorder = "array",categoryarray=State)
+## Now we are plotting the Box plot 
+Sensor_Compiled %>%
+    filter(Sensor_Name %in% Sensors_good$Sensor_Name)%>%
+    mutate(PM25= rowMeans(cbind(PM25_A, PM25_B), na.rm=T)) %>%
+    plot_ly(y=~PM25,x=~District) %>%
+    add_boxplot(color = ~State)%>%
+    layout(yaxis=list(title="PM2.5 (µg/m³)"),
+           xaxis=xform)
+```
