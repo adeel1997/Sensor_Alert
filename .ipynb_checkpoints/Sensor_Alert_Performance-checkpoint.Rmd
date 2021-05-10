@@ -1,13 +1,18 @@
+
+<!-- Giving the title and Logos location -->
+
 ---
 title: | 
-    ![](/home/jovyan/Git/Sensor_Alert/Images/PA_logo.png){width=1in} 
+    ![](/home/jovyan/Git/Sensor_Alert/images/PA_logo.png){width=1in} 
     Sensor Alert and Performance
-    ![](/home/jovyan/Git/Sensor_Alert/Images/CEEW_logo.jpg){width=2in} 
+    ![](/home/jovyan/Git/Sensor_Alert/images/CEEW_logo.jpg){width=2in} 
 date:  "`r format(Sys.time(), '%d %B, %Y')`"  
 output:
   html_document:
     df_print: paged
 ---
+
+<!-- Giving the Preloader information in CSS -->
 
 ```{css, echo=FALSE}
 #preloader {
@@ -18,11 +23,13 @@ output:
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: rgba(255,255,255,0.5) url('https://cdn.dribbble.com/users/107759/screenshots/2436386/copper-loader.gif') no-repeat center 20%;
+  background: rgba(255,255,255,0.5) url('https://cdn.dribbble.com/users/416315/screenshots/4275501/loading-hourglass.gif') no-repeat center 20%;
 }
 ```
 
 <div id="preloader"></div>
+
+<!-- Stopping the Preloader when page opened up -->
 
 ```{js, echo=FALSE}
 $(function(){ // this replaces document.ready
@@ -34,6 +41,8 @@ $(function(){ // this replaces document.ready
 });
 ```
 
+<!-- Loading R Packages -->
+
 ```{r setup, include=FALSE}
 ## Loading Relevant packages
 library(AirSensor);library(MazamaSpatialUtils)
@@ -41,13 +50,14 @@ library(lubridate);library(dplyr);library(Metrics);library(caret)
 library(tidyverse);library(leaflet);library(DT);library(tidygeocoder);
 library(plotly);library(knitr);library(crosstalk)
 ```
+<!-- Setting the overwise as tab -->
 
 ## {.tabset .tabset-fade .tabset-pills}
 
 ### All Sensors
 ```{r,echo=F}
 ## Adding Spatial Data file
-initializeMazamaSpatialUtils("/home/jovyan/Git/Sensor_Alert/Spatial_data")
+initializeMazamaSpatialUtils("~/Git/Sensor_Alert/Spatial_data")
 ## Creating the pas object
 pas <- pas_createNew(countryCodes = "IN",baseUrl = 'https://www.purpleair.com/json?all=true',
                      lookbackDays = 30,includePWFSL = FALSE)
@@ -121,6 +131,7 @@ leaflet(pas_updated) %>%
 ```
 
 ### Inactive Sensors
+
 ```{r,echo=F}
 ## Finding the Inactive Sensors based on Last Seen 
 Inactive_Sensor <- pas %>% filter(!grepl("B",label)) %>% filter(lastSeen <Sys.Date()-1)%>%
@@ -171,8 +182,6 @@ for (i in 1:length(a)) {
             verbose = TRUE,
             timezone = "Asia/Kolkata"
         )
-        # Create aggregation function
-        FUN_mean <- function(x) mean(x, na.rm = TRUE)
         ## We convert the minute data in 30 minutes aggregate, change the time zone to Asia and convert
         ## temperature into Celcius
         Sensor_daily <- example_pat %>%pat_aggregate(count=30,unit="minutes") %>%
@@ -207,6 +216,7 @@ for (i in 1:length(a)) {
 
 
 ### Performance 
+
 ```{r,echo=F,warning=FALSE,message=F}
 
 ## Adding Sensor Performance and sorting it based on RMSE
@@ -235,6 +245,7 @@ datatable(Results,extensions = c('Buttons','FixedHeader','FixedColumns'),
 
 
 ```
+
 ### Data Exploration
 
 ```{r,echo=F,out.width='100%',warning=FALSE,message=F}
@@ -289,10 +300,13 @@ bscols(
 
 ```
 
+<!-- Setting default Sensor as NASA_AQCS_101 and QA QC to be done on the dataset -->
+
 ```{js, echo=FALSE}
 $(document).ready(function() {
     document.getElementById("Sensor_Name").getElementsByClassName("selectized")[0].selectize.setValue("NASA_AQCS_101", false);
 });
+
 ```
 
 ### State Overview
