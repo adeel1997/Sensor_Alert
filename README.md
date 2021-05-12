@@ -1,6 +1,6 @@
-# Sensor Alert & Performance (SAP) for PurpleAir IoT sensors:
+# Sensor Alert & Performance (SAP) for PurpleAir IoT sensors
 
-An open source code that helps to create a sensor Alert & performance system for the low cost IoT purple air sensors (www.purpleair.com). PurpleAir makes inexpensive air pollution sensors to track PM2.5 concentrations. PM2.5 means "Particulate Matter 2.5 Micron," which is small particles that enters our human body while breathing from vairous sources.
+An open source code that helps to create a sensor Alert & performance system for the low cost IoT purple air sensors (www2.purpleair.com). PurpleAir makes inexpensive air pollution sensors to track PM2.5 concentrations. PM2.5 means "Particulate Matter 2.5 Micron," which is small particles that enters our human body while breathing from vairous sources.
 
 #### What is Inside the SAP? 
 1. <filename> - SAP system. A HTML page to overview.
