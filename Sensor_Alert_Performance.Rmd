@@ -4,7 +4,7 @@
 ---
 title: | 
     ![](/home/jovyan/Git/Sensor_Alert/images/PA_logo.png){width=1in} 
-    Sensor Alert and Performance
+    Sensor Alert & Performance(SAP)
     ![](/home/jovyan/Git/Sensor_Alert/images/CEEW_logo.jpg){width=2in} 
 date:  "`r format(Sys.time(), '%d %B, %Y')`"  
 output:
@@ -341,7 +341,7 @@ Sensor_Compiled %>%
 
 #### **All Sensors** 
 
-This will give us an overview of the low-cost(Purple Air) sensors networks across India & specifically over Indo-Gangetic Plain. We can look into the AQ-Particluate matter 2.5 (PM2.5)data based on the solutions(projects) like SAMOSA, NASA, UTN or by sensor names such as NASA_AQCS_102, UTN102 or SAMOSA_0001. We can further filter based on city, district or state. We can find the number of sensors under each project & also ease to download in .csv, .xlsx or .pdf file formats. 
+This will give us an overview of the low-cost(Purple Air) sensors networks across India & specifically over Indo-Gangetic Plain. We can look into the AQ-Particluate matter of 2.5 microns (PM2.5) data based on the solutions (projects) like SAMOSA, NASA, UTN or by sensor names such as NASA_AQCS_102, UTN102 or SAMOSA_0001. We can further filter based on city, district or state. We can find the number of sensors under each project & also easy to download in .csv, .xlsx or .pdf file formats. 
 
 
 #### **Map**
@@ -358,11 +358,11 @@ Purple Air sensors have two channels,Channel A & Channel B. This provides hourly
 
 #### **Data Exploration**
 
-Here we can explore & analyse the time series pattern of a sensor or multiple sensors for last 30 days. The time series measures PM2.5 concentrations of both channels A & B. Scatter plot helps us to know how each channel of the sensors are performing. In QA-QC, check box 0 is to see noisy data and 1 to see data after performing basic QA-QC. This will help us to diagnose the non-perfroming channel. 
+Here we can explore & analyse the time series pattern of a sensor or multiple sensors for last 30 days. The time series measures PM2.5 concentrations of both channels A & B. Scatter plot helps us to know how each channel of the sensors are performing. We can compare against sensors, distcirts or states. In QA-QC, check box 0 is to see noisy data and 1 to see data after performing basic QA-QC. This will help us to diagnose the non-perfroming channel. 
 
 #### **State Overview**
 
-This allows to compare the PM2.5 levels of all sensor units in districts and states via [Box plot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) . Also,  we can sort the sensors with RMSE less than 20. Double click on the state legend to explore the box plot for a specific state. Select multiple states for comparative analsyis of PM2.5 levels among states.
+This allows to compare the PM2.5 levels of all sensor units across states and districts via [Box plot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) . Double click (tap) on the state legend to explore the box plot for a specific state. Select multiple states for comparative analsyis of PM2.5 levels among states.
 
 ****
 
