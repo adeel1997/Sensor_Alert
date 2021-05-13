@@ -12,8 +12,20 @@ An open source code that helps to create a Sensor Alert & Performance (SAP) syst
 
 
 ### Dependencies
-
-
+## Please upload the following packages
+library(AirSensor)          ; https://github.com/MazamaScience/AirSensor
+library(MazamaSpatialUtils) ; https://github.com/MazamaScience/MazamaSpatialUtils
+library(lubridate)          ; https://github.com/tidyverse/lubridate
+library(dplyr)              ; https://github.com/tidyverse/dplyr
+library(Metrics)            ; https://github.com/mfrasco/Metrics
+library(caret)              ; https://github.com/topepo/caret
+library(tidyverse)          ; https://github.com/tidyverse/
+library(leaflet)            ; https://github.com/rstudio/leaflet
+library(DT)                 ; https://github.com/rstudio/DT
+library(tidygeocoder)       ; https://github.com/nateritter/TinyGeocoder
+library(plotly)             ; https://github.com/ropensci/plotly
+library(knitr)              ; https://github.com/yihui/knitr
+library(crosstalk)          ; https://github.com/rstudio/crosstalk
 
 
 
