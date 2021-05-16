@@ -3,9 +3,9 @@
 
 ---
 title: | 
-    ![](/home/jovyan/Git/Sensor_Alert/images/PA_logo.png){width=1in} 
+    ![](/home/ubuntu/Git/Sensor_Alert/images/PA_logo.png){width=1in} 
     Sensor Alert and Performance
-    ![](/home/jovyan/Git/Sensor_Alert/images/CEEW_logo.jpg){width=2in} 
+    ![](/home/ubuntu/Git/Sensor_Alert/images/CEEW_logo.jpg){width=2in} 
 date:  "`r format(Sys.time(), '%d %B, %Y')`"  
 output:
   html_document:
@@ -57,7 +57,7 @@ library(plotly);library(knitr);library(crosstalk)
 ### All Sensors
 ```{r,echo=F}
 ## Adding Spatial Data file
-initializeMazamaSpatialUtils("~/Git/Sensor_Alert/Spatial_data")
+initializeMazamaSpatialUtils("/home/ubuntu/Git/Sensor_Alert/Spatial_data")
 ## Creating the pas object
 pas <- pas_createNew(countryCodes = "IN",baseUrl = 'https://www.purpleair.com/json?all=true',
                      lookbackDays = 30,includePWFSL = FALSE)
