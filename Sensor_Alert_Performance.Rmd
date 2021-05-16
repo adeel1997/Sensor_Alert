@@ -3,7 +3,6 @@
 
 ---
 title: | 
-<<<<<<< HEAD
     ![](/home/ubuntu/Git/Sensor_Alert/images/PA_logo.png){width=1in} 
     Sensor Alert & Performance(SAP)
     ![](/home/ubuntu/Git/Sensor_Alert/images/CEEW_logo.jpg){width=2in} 
@@ -154,7 +153,7 @@ DT::datatable(Inactive_Sensor,extensions = c('Buttons','FixedHeader','FixedColum
               )
 
 ```
-
+<!-- Here we retrieving the data sensor wise -->
 
 ```{r,include=F}
 
