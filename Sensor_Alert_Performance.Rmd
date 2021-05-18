@@ -256,7 +256,7 @@ datatable(Results,extensions = c('Buttons','FixedHeader','FixedColumns'),
 
 Sensor_Compiled <- Sensor_Compiled%>%
     mutate(PM25= rowMeans(cbind(PM25_A, PM25_B), na.rm=T))  %>% mutate(QAQC=
-    ifelse(PM25_A<10 | PM25_B<10 | PM25_B >500 | PM25 >500 ,0,ifelse(
+    ifelse(PM25_A<10 | PM25_B<10 | PM25_A >500 | PM25_B >500 ,0,ifelse(
         PM25_A >100 | PM25_B >100, ifelse(
             abs(PM25_A - PM25_B)/pmax(PM25_A,PM25_B) > 0.1,0,1
         ),1
