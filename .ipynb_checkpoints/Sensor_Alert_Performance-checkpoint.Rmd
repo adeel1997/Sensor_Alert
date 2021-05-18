@@ -250,19 +250,17 @@ datatable(Results,extensions = c('Buttons','FixedHeader','FixedColumns'),
 
 ```{r,echo=F,out.width='100%',warning=FALSE,message=F}
 
-## Creating PM2.5 average and QA QC column to do filtering 1 is Quality Assured; 0 is to flag bad data point
-
-## The first filter is extreme bounds filter(Greater than 10 and less than 500) ; second is if PM2.5 from any channel is greater than 100 and they disagree by more than 10%. It should flag those values as well
+## First it checks whether PM2.5 of any channel is above 500 then if the value is above 100
+## then it checks whether error between A and B channel is less than 10%. Finally if the PM2.5
+## is less than 100 then it checks if the difference between two channel is less than 10
+## Here QA QC 0 signifies bad data point and 1 signifies good data point
 
 Sensor_Compiled <- Sensor_Compiled%>%
     mutate(PM25= rowMeans(cbind(PM25_A, PM25_B), na.rm=T))  %>% mutate(QAQC=
-    ifelse(PM25_A<10 | PM25_B<10 | PM25_B >500 | PM25 >500 ,0,ifelse(
-        PM25_A >100 | PM25_B >100, ifelse(
-            abs(PM25_A - PM25_B)/pmax(PM25_A,PM25_B) > 0.1,0,1
-        ),1
-        
-    ))
-)
+    ifelse(PM25_A<10 | PM25_B<10 | PM25_A >500 | PM25_B >500 ,0,
+           ifelse(PM25_A >100 | PM25_B >100, ifelse(abs(PM25_A - PM25_B)/pmax(PM25_A,PM25_B) > 0.1,0,1),
+                  ifelse(PM25_A<100  | PM25_B <100,ifelse(abs(PM25_A-PM25_B) >10,0,1),1)                      
+)))
 
 
 
@@ -358,7 +356,7 @@ Purple Air sensors have two channels,Channel A & Channel B. This provides hourly
 
 #### **Data Exploration**
 
-Here we can explore & analyse the time series pattern of a sensor or multiple sensors for last 30 days. The time series measures PM2.5 concentrations of both channels A & B. Scatter plot helps us to know how each channel of the sensors are performing. We can compare against sensors, distcirts or states. In QA-QC, check box 0 is to see noisy data and 1 to see data after performing basic QA-QC. This will help us to diagnose the non-perfroming channel. 
+Here we can explore & analyze the time series pattern of a sensor or multiple sensors for last 30 days. The time series measures PM2.5 concentrations of both channels A & B. Scatter plot helps us to know how each channel of the sensors have perfored across last 30 days. We can compare against sensors, districts or states. In QA-QC, check box 0 is to see noisy data and 1 to see data after performing basic QA-QC. This will help us to diagnose the non-perfroming channel. 
 
 #### **State Overview**
 

@@ -1,9 +1,10 @@
 library(rmarkdown);library(knitr);library(aws.s3)
 
+## Render the R markdown file
+render('/home/ubuntu/Git/Sensor_Alert/Sensor_Alert_Performance.Rmd')
+
 ## Adding the R environment file. This file contains the API used for analysis
 readRenviron("/home/ubuntu/Git/API.Renviron")
-
-render('/home/ubuntu/Git/Sensor_Alert/Sensor_Alert_Performance.Rmd')
 
 ## Add your AWS account details 
 Sys.setenv("AWS_ACCESS_KEY_ID" = Sys.getenv('AWS_ACCESS_KEY_ID'),
