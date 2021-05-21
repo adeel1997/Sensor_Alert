@@ -298,11 +298,11 @@ bscols(
 
 ```
 
-<!-- Setting default Sensor as NASA_AQCS_101 and QA QC to be done on the dataset -->
+<!-- Setting default Sensor as NASA_AQCS_167 and QA QC to be done on the dataset -->
 
 ```{js, echo=FALSE}
 $(document).ready(function() {
-    document.getElementById("Sensor_Name").getElementsByClassName("selectized")[0].selectize.setValue("NASA_AQCS_101", false);
+    document.getElementById("Sensor_Name").getElementsByClassName("selectized")[0].selectize.setValue("NASA_AQCS_167", false);
 });
 
 ```
