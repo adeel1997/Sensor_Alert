@@ -356,4 +356,4 @@ Here we can explore & analyze the time series pattern of a sensor or multiple se
 This allows to compare the PM2.5 levels of all sensor units across states and districts via [Box plot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) . Double click (tap) on the state legend to explore the box plot for a specific state. Select multiple states for comparative analsyis of PM2.5 levels among states.
 ****
 <p style="color:red"> For any query or suggestions reach out at : adeel.khan@ceew.in
-<p style="color:DodgerBlue"> For adddimg features & ideas contribute at : [Sensor Alert & Performance] (https://github.com/adeel1997/Sensor_Alert)
+<p style="color:DodgerBlue"> For addding features & ideas contribute at : [Sensor Alert & Performance](https://github.com/adeel1997/Sensor_Alert)
