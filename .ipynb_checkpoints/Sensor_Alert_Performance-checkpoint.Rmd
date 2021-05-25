@@ -10,6 +10,8 @@ date:  "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     df_print: paged
+    keep_md: true
+
 ---
 
 <!-- Giving the Preloader information in CSS -->
@@ -117,7 +119,7 @@ leaflet(pas_updated) %>%
     addProviderTiles(providers$CartoDB.Positron) %>%
     addCircleMarkers(stroke = F, opacity = 0.8,weight = 4,radius = 10,
                      color=~risk.pal(pm25_1day),
-                     popup = paste0("<b>", pas$label, "</b><br/>", 
+                     popup = paste0("<b>", pas_updated$label, "</b><br/>", 
                                     "temperature = ", 
                                     round(pas_updated$TempC, 0), "°C<br/>", "humidity = ", 
                                     round(pas_updated$humidity, 0), "%<br/>","last Seen = ",
@@ -338,22 +340,23 @@ Sensor_Compiled %>%
 ### About 
 
 #### **All Sensors** 
-This will give us an overview of the low-cost(Purple Air) sensors networks across India & specifically over Indo-Gangetic Plain. We can look into the AQ-Particluate matter of 2.5 microns (PM2.5) data based on the solutions (projects) like SAMOSA, NASA, UTN or by sensor names such as NASA_AQCS_102, UTN102 or SAMOSA_0001. We can further filter based on city, district or state. We can find the number of sensors under each project & also easy to download in .csv, .xlsx or .pdf file formats. 
+This will give us an overview of the low-cost(Purple Air) sensors networks across India & specifically over Indo-Gangetic Plain. We can look into the AQ-Particluate matter of 2.5 microns (PM2.5) levels based on the solutions (projects) like SAMOSA, NASA, UTN or by sensor names such as NASA_AQCS_102, UTN102 or SAMOSA_0001. We can further filter based on city, district or state. We can find the number of sensors under each project & also easy to download in .csv, .xlsx or pdf files. 
 
 #### **Map**
 The map provides an interactive interface to view the distribution of low-cost sensors network across India. The [AQI](https://app.cpcbccr.com/AQI_India/) is based on average PM2.5 (Indian standards) in last 1 day. We can also click any sensor unit to get brief about the selected sensor. 
 
 #### **Inactive Sensors**
-This gives us the list of sensor units that are inactive for past 24 hours. 
+This gives us the list of sensor units that are inactive since last 24 hours. 
 
 #### **Performance Metrics**
 Purple Air sensors have two channels,Channel A & Channel B. This provides hourly aggregated R2 (coefficient of determination) and RMSE(Root Mean Square Error) among the 2 channels of each sensor unit for last 30 days. Observations provides the number of values for last 30 days for a sensor. The total number should equals 720 (Hour*days, [24*30]). We can easily filter based on the metric values to see how the sensors have performed over last 30 days. 
 
 #### **Data Exploration**
-Here we can explore & analyze the time series pattern of a sensor or multiple sensors for last 30 days. The time series measures PM2.5 concentrations of both channels A & B. Scatter plot helps us to know how each channel of the sensors have perfored across last 30 days. We can compare against sensors, districts or states. In QA-QC, check box 0 is to see noisy data and 1 to see data after performing basic QA-QC. This will help us to diagnose the non-perfroming channel. 
+Here we can explore & analyze the time series pattern of a sensor or multiple sensors for last 30 days. The time series measures PM2.5 concentrations of both channels A & B. Scatter plot helps us to know how each channel of the sensors have perfored across last 30 days. We can compare against sensors, districts or states. In QA-QC, check box 0 is to see noisy data and 1 to see data after performing basic QA-QC. This will help us to diagnose & identify the non-perfroming channel. 
 
 #### **State Overview**
 This allows to compare the PM2.5 levels of all sensor units across states and districts via [Box plot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) . Double click (tap) on the state legend to explore the box plot for a specific state. Select multiple states for comparative analsyis of PM2.5 levels among states.
-****
+
+
 <p style="color:red"> For any query or suggestions reach out at : adeel.khan@ceew.in
-<p style="color:DodgerBlue"> For addding features & ideas contribute at : [Sensor Alert & Performance](https://github.com/adeel1997/Sensor_Alert)
+<p style="color:DodgerBlue"> To add features & ideas, contribute at : [Sensor Alert & Performance](https://github.com/adeel1997/Sensor_Alert)
