@@ -50,7 +50,7 @@ $(function(){ // this replaces document.ready
 library(AirSensor);library(MazamaSpatialUtils)
 library(lubridate);library(dplyr);library(Metrics);library(caret)
 library(tidyverse);library(leaflet);library(DT);library(tidygeocoder);
-library(plotly);library(knitr);library(crosstalk)
+library(plotly);library(knitr);library(crosstalk);library(leaflet.extras)
 ```
 <!-- Setting the overwise as tab -->
 
@@ -127,7 +127,8 @@ leaflet(pas_updated) %>%
                                     round(pas_updated$pm25_1hr, 1), " µg/m3<br/>", "pm25_1day = ", 
                                     round(pas_updated$pm25_1day, 1), " µg/m3<br/>","pm25_1week = ",
                                     round(pas_updated$pm25_1week, 1), " µg/m3<br/>"))%>%
-    addLegend(labels = labels,colors =colores , "bottomright",title = "AQI ")
+    addLegend(labels = labels,colors =colores , "bottomright",title = "AQI ")%>%
+    addSearchOSM()
 
 
 ```
@@ -300,12 +301,18 @@ bscols(
 
 ```
 
-<!-- Setting default Sensor as NASA_AQCS_167 and QA QC to be done on the dataset -->
+<!-- Setting default Sensor as NASA_AQCS_167 QA QC to be done on the dataset -->
 
 ```{js, echo=FALSE}
 $(document).ready(function() {
     document.getElementById("Sensor_Name").getElementsByClassName("selectized")[0].selectize.setValue("NASA_AQCS_167", false);
 });
+
+$(document).ready(function() {
+    document.getElementById("QA QC").value = "1";
+});
+
+
 
 ```
 
@@ -359,4 +366,4 @@ This allows to compare the PM2.5 levels of all sensor units across states and di
 
 
 <p style="color:red"> For any query or suggestions reach out at : adeel.khan@ceew.in
-<p style="color:DodgerBlue"> To add features & ideas, contribute at : [Sensor Alert & Performance](https://github.com/adeel1997/Sensor_Alert)
+<p style="color:red"> To add features & ideas, contribute at : [Sensor Alert & Performance](https://github.com/adeel1997/Sensor_Alert)
