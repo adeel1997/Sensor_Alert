@@ -161,7 +161,7 @@ DT::datatable(Inactive_Sensor,extensions = c('Buttons','FixedHeader','FixedColum
 
 ## Creating the Pas Study Area object
 pas_study_area <- pas %>% 
-    pas_filter(grepl('NASA',label)|grepl('UT',label),!grepl("B",label))
+    pas_filter(!grepl("B",label))
 
 ### Getting the names of all the sensors within our study area
 a <- pas_getLabels(pas = pas_study_area) 
@@ -198,8 +198,8 @@ for (i in 1:length(a)) {
         colnames(Sensor_daily) <- c("Date","PM25_A","PM25_B","Humidity","Temperature")
         
         ## Adding the Latitude and Longitude, Sensor Name and State,District  into the dataframe
-        Sensor_daily$lat <- as.list(pas %>% pas_filter(label==a[i]) %>% select(latitude))$latitude
-        Sensor_daily$long <- as.list(pas %>% pas_filter(label==a[i]) %>% select(longitude))$longitude
+        Sensor_daily$lat <- as.list(pas %>% pas_filter(label==a[i]) %>% select(round(latitude, 3)))$latitude
+        Sensor_daily$long <- as.list(pas %>% pas_filter(label==a[i]) %>% select(round(longitude,3)))$longitude
         Sensor_daily$Sensor_Name <- as.list(pas %>% pas_filter(label==a[i]) %>% select(label))$label
         Sensor_daily$State <- as.list(pas %>% pas_filter(label==a[i]) %>% select(State))$State
         Sensor_daily$City <- as.list(pas %>% pas_filter(label==a[i]) %>% select(City))$City
