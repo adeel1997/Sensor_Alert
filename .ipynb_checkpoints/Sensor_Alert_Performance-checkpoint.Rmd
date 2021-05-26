@@ -123,7 +123,7 @@ leaflet(pas_updated) %>%
                                     "temperature = ", 
                                     round(pas_updated$TempC, 0), "°C<br/>", "humidity = ", 
                                     round(pas_updated$humidity, 0), "%<br/>","last Seen = ",
-                                    pas$lastSeen,"<br/>","pm25_1hr = ",
+                                    pas_updated$lastSeen,"<br/>","pm25_1hr = ",
                                     round(pas_updated$pm25_1hr, 1), " µg/m3<br/>", "pm25_1day = ", 
                                     round(pas_updated$pm25_1day, 1), " µg/m3<br/>","pm25_1week = ",
                                     round(pas_updated$pm25_1week, 1), " µg/m3<br/>"))%>%
@@ -136,8 +136,9 @@ leaflet(pas_updated) %>%
 ### Inactive Sensors
 
 ```{r,echo=F}
-## Finding the Inactive Sensors based on Last Seen 
+## Finding the Inactive Sensors based on Last Seen and also rounding off the lat long
 Inactive_Sensor <- pas %>% filter(!grepl("B",label)) %>% filter(lastSeen <Sys.Date()-1)%>%
+        mutate(latitude=round(latitude,3),longitude=round(longitude,3))%>%
         select(Sensor_Name,lastSeen,City,District,State,latitude,longitude) %>%
     arrange(lastSeen)
 ## Visualizing the Data frame
@@ -309,7 +310,8 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    document.getElementById("QA QC").value = "1";
+    
+    document.getElementById("QA QC").value("1").checked = "checked";
 });
 
 
