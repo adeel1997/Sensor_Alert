@@ -1234,3 +1234,418 @@ Output created: Sensor_Alert_Performance.html
 There were 11 warnings (use warnings() to see them)
 File size is 18148470. Consider setting 'multipart = TRUE'.
 [1] TRUE
+
+
+processing file: Sensor_Alert_Performance.Rmd
+  |                                                                              |                                                                      |   0%  |                                                                              |...                                                                   |   4%
+   inline R code fragments
+
+  |                                                                              |......                                                                |   9%
+label: unnamed-chunk-1 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "css"
+
+  |                                                                              |.........                                                             |  13%
+  ordinary text without R code
+
+  |                                                                              |............                                                          |  17%
+label: unnamed-chunk-2 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |...............                                                       |  22%
+  ordinary text without R code
+
+  |                                                                              |..................                                                    |  26%
+label: setup (with options) 
+List of 1
+ $ include: logi FALSE
+
+  |                                                                              |.....................                                                 |  30%
+  ordinary text without R code
+
+  |                                                                              |........................                                              |  35%
+label: unnamed-chunk-3 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |...........................                                           |  39%
+  ordinary text without R code
+
+  |                                                                              |..............................                                        |  43%
+label: unnamed-chunk-4 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+Assuming "longitude" and "latitude" are longitude and latitude, respectively
+  |                                                                              |.................................                                     |  48%
+  ordinary text without R code
+
+  |                                                                              |.....................................                                 |  52%
+label: unnamed-chunk-5 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |........................................                              |  57%
+  ordinary text without R code
+
+  |                                                                              |...........................................                           |  61%
+label: unnamed-chunk-6 (with options) 
+List of 1
+ $ include: symbol F
+
+  |                                                                              |..............................................                        |  65%
+  ordinary text without R code
+
+  |                                                                              |.................................................                     |  70%
+label: unnamed-chunk-7 (with options) 
+List of 3
+ $ echo   : symbol F
+ $ warning: logi FALSE
+ $ message: symbol F
+
+`summarise()` has grouped output by 'Sensor_Name', 'State', 'District'. You can override using the `.groups` argument.
+  |                                                                              |....................................................                  |  74%
+  ordinary text without R code
+
+  |                                                                              |.......................................................               |  78%
+label: unnamed-chunk-8 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+  |                                                                              |..........................................................            |  83%
+  ordinary text without R code
+
+  |                                                                              |.............................................................         |  87%
+label: unnamed-chunk-9 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |................................................................      |  91%
+  ordinary text without R code
+
+  |                                                                              |...................................................................   |  96%
+label: unnamed-chunk-10 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+  |                                                                              |......................................................................| 100%
+  ordinary text without R code
+
+
+output file: Sensor_Alert_Performance.knit.md
+
+/home/ubuntu/miniconda/envs/r-env/bin/pandoc +RTS -K512m -RTS Sensor_Alert_Performance.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output Sensor_Alert_Performance.html --lua-filter /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --variable bs3=TRUE --standalone --section-divs --template /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --include-in-header /tmp/RtmpUNQo1u/rmarkdown-str9921cf49fbf.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+Killed
+Error: pandoc document conversion failed with error 137
+In addition: There were 11 warnings (use warnings() to see them)
+Execution halted
+
+
+processing file: Sensor_Alert_Performance.Rmd
+  |                                                                              |                                                                      |   0%  |                                                                              |...                                                                   |   4%
+   inline R code fragments
+
+  |                                                                              |......                                                                |   9%
+label: unnamed-chunk-1 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "css"
+
+  |                                                                              |.........                                                             |  13%
+  ordinary text without R code
+
+  |                                                                              |............                                                          |  17%
+label: unnamed-chunk-2 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |...............                                                       |  22%
+  ordinary text without R code
+
+  |                                                                              |..................                                                    |  26%
+label: setup (with options) 
+List of 1
+ $ include: logi FALSE
+
+  |                                                                              |.....................                                                 |  30%
+  ordinary text without R code
+
+  |                                                                              |........................                                              |  35%
+label: unnamed-chunk-3 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |...........................                                           |  39%
+  ordinary text without R code
+
+  |                                                                              |..............................                                        |  43%
+label: unnamed-chunk-4 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+Assuming "longitude" and "latitude" are longitude and latitude, respectively
+  |                                                                              |.................................                                     |  48%
+  ordinary text without R code
+
+  |                                                                              |.....................................                                 |  52%
+label: unnamed-chunk-5 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |........................................                              |  57%
+  ordinary text without R code
+
+  |                                                                              |...........................................                           |  61%
+label: unnamed-chunk-6 (with options) 
+List of 1
+ $ include: symbol F
+
+  |                                                                              |..............................................                        |  65%
+  ordinary text without R code
+
+  |                                                                              |.................................................                     |  70%
+label: unnamed-chunk-7 (with options) 
+List of 3
+ $ echo   : symbol F
+ $ warning: logi FALSE
+ $ message: symbol F
+
+`summarise()` has grouped output by 'Sensor_Name', 'State', 'District'. You can override using the `.groups` argument.
+  |                                                                              |....................................................                  |  74%
+  ordinary text without R code
+
+  |                                                                              |.......................................................               |  78%
+label: unnamed-chunk-8 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+  |                                                                              |..........................................................            |  83%
+  ordinary text without R code
+
+  |                                                                              |.............................................................         |  87%
+label: unnamed-chunk-9 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |................................................................      |  91%
+  ordinary text without R code
+
+  |                                                                              |...................................................................   |  96%
+label: unnamed-chunk-10 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+  |                                                                              |......................................................................| 100%
+  ordinary text without R code
+
+
+output file: Sensor_Alert_Performance.knit.md
+
+/home/ubuntu/miniconda/envs/r-env/bin/pandoc +RTS -K512m -RTS Sensor_Alert_Performance.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output Sensor_Alert_Performance.html --lua-filter /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --variable bs3=TRUE --standalone --section-divs --template /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --include-in-header /tmp/Rtmpqp0yuI/rmarkdown-str447b7ccdab23.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+
+Output created: Sensor_Alert_Performance.html
+Warning messages:
+1: In cor(obs, pred, use = ifelse(na.rm, "complete.obs", "everything")) :
+  the standard deviation is zero
+2: In bscols(widths = c(10, 6, 6), widgets, plot_ly(tx, x = ~PM25_A,  :
+  Sum of bscol width units is greater than 12
+3: Ignoring 2915 observations 
+4: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+5: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+6: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+7: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+8: Ignoring 4012 observations 
+9: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+10: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+File size is 18058798. Consider setting 'multipart = TRUE'.
+[1] TRUE
+
+
+processing file: Sensor_Alert_Performance.Rmd
+  |                                                                              |                                                                      |   0%  |                                                                              |...                                                                   |   4%
+   inline R code fragments
+
+  |                                                                              |......                                                                |   9%
+label: unnamed-chunk-1 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "css"
+
+  |                                                                              |.........                                                             |  13%
+  ordinary text without R code
+
+  |                                                                              |............                                                          |  17%
+label: unnamed-chunk-2 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |...............                                                       |  22%
+  ordinary text without R code
+
+  |                                                                              |..................                                                    |  26%
+label: setup (with options) 
+List of 1
+ $ include: logi FALSE
+
+  |                                                                              |.....................                                                 |  30%
+  ordinary text without R code
+
+  |                                                                              |........................                                              |  35%
+label: unnamed-chunk-3 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |...........................                                           |  39%
+  ordinary text without R code
+
+  |                                                                              |..............................                                        |  43%
+label: unnamed-chunk-4 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+Assuming "longitude" and "latitude" are longitude and latitude, respectively
+  |                                                                              |.................................                                     |  48%
+  ordinary text without R code
+
+  |                                                                              |.....................................                                 |  52%
+label: unnamed-chunk-5 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |........................................                              |  57%
+  ordinary text without R code
+
+  |                                                                              |...........................................                           |  61%
+label: unnamed-chunk-6 (with options) 
+List of 1
+ $ include: symbol F
+
+  |                                                                              |..............................................                        |  65%
+  ordinary text without R code
+
+  |                                                                              |.................................................                     |  70%
+label: unnamed-chunk-7 (with options) 
+List of 3
+ $ echo   : symbol F
+ $ warning: logi FALSE
+ $ message: symbol F
+
+`summarise()` has grouped output by 'Sensor_Name', 'State', 'District'. You can override using the `.groups` argument.
+  |                                                                              |....................................................                  |  74%
+  ordinary text without R code
+
+  |                                                                              |.......................................................               |  78%
+label: unnamed-chunk-8 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+  |                                                                              |..........................................................            |  83%
+  ordinary text without R code
+
+  |                                                                              |.............................................................         |  87%
+label: unnamed-chunk-9 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |................................................................      |  91%
+  ordinary text without R code
+
+  |                                                                              |...................................................................   |  96%
+label: unnamed-chunk-10 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+  |                                                                              |......................................................................| 100%
+  ordinary text without R code
+
+
+output file: Sensor_Alert_Performance.knit.md
+
+/home/ubuntu/miniconda/envs/r-env/bin/pandoc +RTS -K512m -RTS Sensor_Alert_Performance.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output Sensor_Alert_Performance.html --lua-filter /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --variable bs3=TRUE --standalone --section-divs --template /home/ubuntu/miniconda/envs/r-env/lib/R/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --include-in-header /tmp/RtmpHVCvr9/rmarkdown-str262205ed2f2.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+Killed
+Error: pandoc document conversion failed with error 137
+In addition: Warning messages:
+1: In cor(obs, pred, use = ifelse(na.rm, "complete.obs", "everything")) :
+  the standard deviation is zero
+2: In bscols(widths = c(10, 6, 6), widgets, plot_ly(tx, x = ~PM25_A,  :
+  Sum of bscol width units is greater than 12
+3: Ignoring 3495 observations 
+4: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+5: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+6: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+7: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+8: Ignoring 4664 observations 
+9: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+10: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+Execution halted

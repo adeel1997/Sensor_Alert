@@ -1,7 +1,7 @@
 library(rmarkdown);library(knitr);library(aws.s3)
 
 ## Render the R markdown file
-render('/home/ubuntu/Git/Sensor_Alert/Sensor_Alert_Performance.Rmd')
+render('/home/ubuntu/Git/Sensor_Alert/Sensor_Alert_Performance.Rmd',"html_document")
 
 ## Adding the R environment file. This file contains the API used for analysis
 readRenviron("/home/ubuntu/Git/API.Renviron")

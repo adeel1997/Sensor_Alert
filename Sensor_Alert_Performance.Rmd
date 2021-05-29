@@ -104,11 +104,11 @@ DT::datatable(pas_subset,extensions = c('Buttons','FixedHeader','FixedColumns'),
 ## Adding Colores
 colores <- c('darkgreen','green','yellow', 'orange','orangered','darkred')
 ## Creating Bins
-risk.bins <-c(0,30, 60,90,120,250,Inf) 
+risk.bins <-c(0, 30, 60, 90, 120, 250, Inf) 
 ## Creating the Pallete based on Bin and Colors
 risk.pal <- colorBin( colores, bins=risk.bins, na.color = "#aaff56")
 ## Creating Labels based on India AQI
-labels=c("Good","Satifactory","Moderate","Poor","Very Poor","Severe")
+labels=c("Good", "Satisfactory", "Moderate", "Poor", "Very Poor", "Severe")
 
 ## Updated the PAS object
 pas_updated <- pas %>% pas_filter(!grepl("B",label))%>%
@@ -127,8 +127,12 @@ leaflet(pas_updated) %>%
                                     round(pas_updated$pm25_1hr, 1), " µg/m3<br/>", "pm25_1day = ", 
                                     round(pas_updated$pm25_1day, 1), " µg/m3<br/>","pm25_1week = ",
                                     round(pas_updated$pm25_1week, 1), " µg/m3<br/>"))%>%
+<<<<<<< HEAD
     addLegend(labels = labels,colors =colores , "bottomright",title = "AQI ")%>%
     addSearchOSM()
+=======
+    addLegend(labels = labels,colors =colores , "topright",title = "Air Quality Index ")
+>>>>>>> 78f6ef1ef2069ffd3bfe9ec77c9708386191db71
 
 
 ```
@@ -163,7 +167,7 @@ DT::datatable(Inactive_Sensor,extensions = c('Buttons','FixedHeader','FixedColum
 
 ## Creating the Pas Study Area object
 pas_study_area <- pas %>% 
-    pas_filter(grepl('NASA',label)|grepl('UT',label),!grepl("B",label))
+    pas_filter(!grepl("B",label))
 
 ### Getting the names of all the sensors within our study area
 a <- pas_getLabels(pas = pas_study_area) 
@@ -200,8 +204,8 @@ for (i in 1:length(a)) {
         colnames(Sensor_daily) <- c("Date","PM25_A","PM25_B","Humidity","Temperature")
         
         ## Adding the Latitude and Longitude, Sensor Name and State,District  into the dataframe
-        Sensor_daily$lat <- as.list(pas %>% pas_filter(label==a[i]) %>% select(latitude))$latitude
-        Sensor_daily$long <- as.list(pas %>% pas_filter(label==a[i]) %>% select(longitude))$longitude
+        Sensor_daily$lat <- as.list(pas %>% pas_filter(label==a[i]) %>% select(round(latitude, 3)))$latitude
+        Sensor_daily$long <- as.list(pas %>% pas_filter(label==a[i]) %>% select(round(longitude,3)))$longitude
         Sensor_daily$Sensor_Name <- as.list(pas %>% pas_filter(label==a[i]) %>% select(label))$label
         Sensor_daily$State <- as.list(pas %>% pas_filter(label==a[i]) %>% select(State))$State
         Sensor_daily$City <- as.list(pas %>% pas_filter(label==a[i]) %>% select(City))$City
