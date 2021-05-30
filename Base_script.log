@@ -1649,3 +1649,59 @@ Returning the palette you asked for with that many colors
 Returning the palette you asked for with that many colors
 
 Execution halted
+
+
+processing file: Sensor_Alert_Performance.Rmd
+  |                                                                              |                                                                      |   0%  |                                                                              |...                                                                   |   4%
+   inline R code fragments
+
+  |                                                                              |......                                                                |   9%
+label: unnamed-chunk-1 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "css"
+
+  |                                                                              |.........                                                             |  13%
+  ordinary text without R code
+
+  |                                                                              |............                                                          |  17%
+label: unnamed-chunk-2 (with options) 
+List of 2
+ $ echo  : logi FALSE
+ $ engine: chr "js"
+
+  |                                                                              |...............                                                       |  22%
+  ordinary text without R code
+
+  |                                                                              |..................                                                    |  26%
+label: setup (with options) 
+List of 1
+ $ include: logi FALSE
+
+  |                                                                              |.....................                                                 |  30%
+  ordinary text without R code
+
+  |                                                                              |........................                                              |  35%
+label: unnamed-chunk-3 (with options) 
+List of 1
+ $ echo: symbol F
+
+  |                                                                              |...........................                                           |  39%
+  ordinary text without R code
+
+  |                                                                              |..............................                                        |  43%
+label: unnamed-chunk-4 (with options) 
+List of 4
+ $ echo     : symbol F
+ $ out.width: chr "100%"
+ $ warning  : logi FALSE
+ $ message  : symbol F
+
+Quitting from lines 104-138 (Sensor_Alert_Performance.Rmd) 
+Error in parse(text = x, srcfile = src) : <text>:27:1: unexpected input
+26:                                     round(pas_updated$pm25_1week, 1), " µg/m3<br/>"))%>%
+27: <<
+    ^
+Calls: render ... <Anonymous> -> parse_all -> parse_all.character -> parse
+
+Execution halted
