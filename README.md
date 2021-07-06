@@ -20,4 +20,4 @@ The SAP systems give us an overview of the low-cost (Purple Air) sensors network
 
 
 ### Frequently Asked Questions
-Please refer to the [PurpleAir FAQ](https://www2.purpleair.com/community/faq) for questions related to the sensor network.
+Please refer to the [PurpleAir FAQ](https://www2.purpleair.com/community/faq) and [SAP -Wiki](https://github.com/adeel1997/Sensor_Alert/wiki) for questions related to the sensor network and the project.
