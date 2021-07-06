@@ -57,6 +57,7 @@ library(plotly);library(knitr);library(crosstalk);library(leaflet.extras)
 ## {.tabset .tabset-fade .tabset-pills}
 
 ### All Sensors
+
 ```{r,echo=F}
 ## Adding Spatial Data file
 initializeMazamaSpatialUtils("/home/ubuntu/Git/Sensor_Alert/Spatial_data")
@@ -169,7 +170,7 @@ a <- pas_getLabels(pas = pas_study_area)
 #length(a)
 ## Defining the start and end date (We are running the Script every month)
 start_date <- Sys.Date() -30
-end_date <- Sys.Date()
+end_date <- Sys.Date() +1
 Sensor_Compiled <- c()
 ### Writing a loop to get all our sensors data, process it and save it in the local folder
 i <- 1
