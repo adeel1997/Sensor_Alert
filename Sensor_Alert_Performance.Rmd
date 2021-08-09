@@ -163,7 +163,7 @@ DT::datatable(Inactive_Sensor,extensions = c('Buttons','FixedHeader','FixedColum
 ```{r,include=F}
 
 ## Creating the Pas Study Area object
-pas_study_area <- pas %>%  pas_filter(grepl('NASA',label)|grepl('UT',label),!grepl("B",label))
+pas_study_area <- pas %>%  pas_filter(grepl('NASA',label)|grepl('UTN',label)|grepl('SAMOSA',label),!grepl("B",label))
 
 ### Getting the names of all the sensors within our study area
 a <- pas_getLabels(pas = pas_study_area) 
@@ -302,11 +302,11 @@ bscols(
 
 ```
 
-<!-- Setting default Sensor as NASA_AQCS_167 QA QC to be done on the dataset -->
+<!-- Setting default Sensor as SAMOSA_0001 QA QC to be done on the dataset -->
 
 ```{js, echo=FALSE}
 $(document).ready(function() {
-    document.getElementById("Sensor_Name").getElementsByClassName("selectized")[0].selectize.setValue("NASA_AQCS_167", false);
+    document.getElementById("Sensor_Name").getElementsByClassName("selectized")[0].selectize.setValue("SAMOSA_0001", false);
 });
 
 $(document).ready(function() {
