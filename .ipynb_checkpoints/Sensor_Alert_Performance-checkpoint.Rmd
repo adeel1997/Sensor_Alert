@@ -137,8 +137,16 @@ leaflet(pas_updated) %>%
 ### Inactive Sensors
 
 ```{r,echo=F}
+
+# Creating time variable 
+time <- Sys.time()
+## Changing the time zone to UTC
+time <- with_tz(time,tz="Asia/Kolkata")
+## Creating one hour lag for the test (If any sensor is inactive for more than an hour we put it in inactive sensor)
+time_check = time-hours(1)
+
 ## Finding the Inactive Sensors based on Last Seen and also rounding off the lat long
-Inactive_Sensor <- pas %>% filter(!grepl("B",label)) %>% filter(lastSeen <Sys.Date()-1)%>%
+Inactive_Sensor <- pas %>% filter(!grepl("B",label)) %>% filter(time_check > lastSeenDate)%>%
         mutate(latitude=round(latitude,3),longitude=round(longitude,3))%>%
         select(Sensor_Name,lastSeen,City,District,State,latitude,longitude) %>%
     arrange(lastSeen)
