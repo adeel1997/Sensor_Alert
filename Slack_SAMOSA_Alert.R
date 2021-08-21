@@ -42,5 +42,6 @@ if (dim(Inactive_sensors)[1] > 0){
     
     slackr("Time of Query",time)
     ## Sending the Slack alert if the sensors is inactive at any moment
+    slackr("Name of Inactive sensors at the moment", pander::pandoc.table(nrow(Inactive_sensors)))
     slackr("Name of Inactive sensors at the moment", pander::pandoc.table(Inactive_sensors))
 }
