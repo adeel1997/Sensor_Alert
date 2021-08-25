@@ -19,6 +19,8 @@ pas$lastSeenDate <- with_tz(pas$lastSeenDate,tz="Asia/Kolkata")
 
 
 SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label))
+Wifi = read.csv("/home/ubuntu/Git/Sensor_Alert/Data/WIFI_SAMOSA.csv",col.names=c("label","Dongle"))
+
 
 #Send notification to slack channel
 time <- Sys.time()
@@ -27,7 +29,8 @@ time <- with_tz(time,tz="Asia/Kolkata")
 ## Creating one hour lag for the test (If any sensor is inactive for more than an hour we send an alert)
 time_check = time-hours(1)
 ## Finding any inactive sensors
-Inactive_sensors = SAMOSA_pas %>% filter(time_check>lastSeenDate) %>% select(label,lastSeenDate)
+Inactive_sensors = SAMOSA_pas %>% filter(time_check>lastSeenDate) %>% select(label,lastSeenDate)%>%
+left_join(Wifi,by="label")
 
 dim(Inactive_sensors)[1]
 
@@ -41,6 +44,7 @@ slackr_setup(channel = "pa_sensor_alert",
 if (dim(Inactive_sensors)[1] > 0){
     
     slackr("Time of Query",time)
+    slackr("Total Inactive sensors", dim(Inactive_sensors)[1])
     ## Sending the Slack alert if the sensors is inactive at any moment
     slackr("Name of Inactive sensors at the moment", pander::pandoc.table(Inactive_sensors))
 }

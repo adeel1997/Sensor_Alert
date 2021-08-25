@@ -27,6 +27,7 @@ output:
   overflow: visible;
   background: rgba(255,255,255,0.5) url('https://cdn.dribbble.com/users/416315/screenshots/4275501/loading-hourglass.gif') no-repeat center 20%;
 }
+
 ```
 
 <div id="preloader"></div>
@@ -59,6 +60,7 @@ library(plotly);library(knitr);library(crosstalk);library(leaflet.extras)
 ### All Sensors
 
 ```{r,echo=F}
+
 ## Adding Spatial Data file
 initializeMazamaSpatialUtils("/home/ubuntu/Git/Sensor_Alert/Spatial_data")
 ## Creating the pas object
@@ -321,7 +323,6 @@ $(document).ready(function() {
     
     document.getElementById("QA QC").value("1").checked = "checked";
 });
-
 
 
 ```
