@@ -26,7 +26,7 @@ SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label),
                                (!grepl ("SAMOSA_0134",label)),(!grepl ("SAMOSA_0135",label)),(!grepl ("SAMOSA_0136",label)),(!grepl ("SAMOSA_0137",label)),(!grepl ("SAMOSA_0139",label)),(!grepl ("SAMOSA_0140",label)),(!grepl ("SAMOSA_0142",label)),(!grepl ("SAMOSA_0143",label)),(!grepl ("SAMOSA_0144",label)),
                                (!grepl ("SAMOSA_0145",label)),(!grepl ("SAMOSA_0146",label)),(!grepl ("SAMOSA_0147",label)),(!grepl ("SAMOSA_0148",label)),(!grepl ("SAMOSA_0149",label)),(!grepl ("SAMOSA_0122",label)), (!grepl ("SAMOSA_0010",label)), (!grepl ("SAMOSA_0025",label)),
                                (!grepl ("SAMOSA_0053",label)), (!grepl ("SAMOSA_0058",label)), (!grepl ("SAMOSA_0163",label)), (!grepl ("SAMOSA_0160",label)), (!grepl ("SAMOSA_0141",label)), (!grepl ("SAMOSA_0164",label)), (!grepl ("SAMOSA_0165",label)), (!grepl ("SAMOSA_0166",label)),
-                               (!grepl ("SAMOSA_0169",label)),(!grepl ("SAMOSA_0170",label)))
+                               (!grepl ("SAMOSA_0169",label)),(!grepl ("SAMOSA_170",label)))
 Wifi = read.csv("/home/ubuntu/Git/Sensor_Alert/Data/WIFI_SAMOSA.csv",col.names=c("label","Dongle"))
 
 
