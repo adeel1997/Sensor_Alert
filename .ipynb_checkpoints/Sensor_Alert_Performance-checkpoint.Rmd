@@ -27,6 +27,7 @@ output:
   overflow: visible;
   background: rgba(255,255,255,0.5) url('https://cdn.dribbble.com/users/416315/screenshots/4275501/loading-hourglass.gif') no-repeat center 20%;
 }
+
 ```
 
 <div id="preloader"></div>
@@ -59,6 +60,7 @@ library(plotly);library(knitr);library(crosstalk);library(leaflet.extras)
 ### All Sensors
 
 ```{r,echo=F}
+
 ## Adding Spatial Data file
 initializeMazamaSpatialUtils("/home/ubuntu/Git/Sensor_Alert/Spatial_data")
 ## Creating the pas object
@@ -171,7 +173,7 @@ DT::datatable(Inactive_Sensor,extensions = c('Buttons','FixedHeader','FixedColum
 ```{r,include=F}
 
 ## Creating the Pas Study Area object
-pas_study_area <- pas %>%  pas_filter(grepl('NASA',label)|grepl('UTN',label)|grepl('SAMOSA',label),!grepl("B",label))
+pas_study_area <- pas %>%  pas_filter(grepl('NASA',label)|grepl('SAMOSA',label),!grepl("B",label))
 
 ### Getting the names of all the sensors within our study area
 a <- pas_getLabels(pas = pas_study_area) 
@@ -231,13 +233,19 @@ for (i in 1:length(a)) {
 
 ```{r,echo=F,warning=FALSE,message=F}
 
-## Adding Sensor Performance and sorting it based on RMSE
+########## Converting dates to Datatime format ##########
+Sensor_Compiled$Date = ymd_hms(Sensor_Compiled$Date,tz="Asia/Kolkata")
+########### Finding the interval 
+Number_Hours = interval(min(Sensor_Compiled$Date),max(Sensor_Compiled$Date))%>%
+as.numeric('hours')
+
+########### Results showing performance #########
 Results <- Sensor_Compiled %>%drop_na(PM25_A,PM25_B)%>%
     group_by(Sensor_Name,State,District,City) %>%
     summarise(RMSE= round(rmse(PM25_A,PM25_B),2),
               R2 = round(R2(PM25_A,PM25_B),3),
-              Observations =n()) %>%
-    select(Sensor_Name,R2,RMSE,Observations,City,District,State)%>%
+              Uptime = round((n()/Number_Hours)*100),2) %>%
+    select(Sensor_Name,R2,RMSE,Uptime,City,District,State)%>%
     arrange(RMSE)
 
 ## Visualizing the Results
@@ -275,8 +283,6 @@ Sensor_Compiled <- Sensor_Compiled%>%
 )))
 
 
-
-
 ## Adding Highlight key for Sensor dataframe
 tx <- highlight_key(Sensor_Compiled)
 
@@ -308,6 +314,8 @@ bscols(
                yaxis=list(title="PM2.5 (µg/m³)"),title="Time Series")
 )
 
+rm(tx)
+
 ```
 
 <!-- Setting default Sensor as SAMOSA_0001 QA QC to be done on the dataset -->
@@ -321,7 +329,6 @@ $(document).ready(function() {
     
     document.getElementById("QA QC").value("1").checked = "checked";
 });
-
 
 
 ```
