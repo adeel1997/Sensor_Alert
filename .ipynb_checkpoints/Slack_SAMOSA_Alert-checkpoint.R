@@ -16,22 +16,23 @@ pas <- pas_createNew(countryCodes = "IN",
 ## Changing the time zone to Asia/Kolkata
 pas$lastSeenDate <- with_tz(pas$lastSeenDate,tz="Asia/Kolkata")
 
-
-
+########## Reading the list of sensors that are put for the colocation
+Colocated_Sensors =read.csv("/home/ubuntu/Git/Sensor_Alert/Data/25_Colocated_Sensors_22Sep21.csv")
+####  Selecting the SAMOSA sensors
 SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label))
-Wifi = read.csv("/home/ubuntu/Git/Sensor_Alert/Data/WIFI_SAMOSA.csv",col.names=c("label","Dongle"))
-
+#head(Colocated_Sensors)
 
 #Send notification to slack channel
 time <- Sys.time()
 ## Changing the time zone to UTC
 time <- with_tz(time,tz="Asia/Kolkata")
-## Creating one hour lag for the test (If any sensor is inactive for more than an hour we send an alert)
-time_check = time-hours(1)
-## Finding any inactive sensors
-Inactive_sensors = SAMOSA_pas %>% filter(time_check>lastSeenDate) %>% select(label,lastSeenDate)%>%
-left_join(Wifi,by="label")
-
+## Creating 5 minutes lag for the test (If any sensor is inactive for more than an hour we send an alert)
+time_check = time-minutes(5)
+## Finding any inactive sensors in the colocated sensors 
+Inactive_sensors = SAMOSA_pas %>%mutate(Sensor_name=label)%>% filter(label %in% Colocated_Sensors$Sensor_name) %>% 
+filter(time_check>lastSeenDate) %>% left_join(Colocated_Sensors,by="Sensor_name") %>%
+select(Sensor_name,lastSeenDate,Dongles)
+#head(Inactive_sensors)
 dim(Inactive_sensors)[1]
 
 ## Adding the R environment file. This file contains the API used for analysis

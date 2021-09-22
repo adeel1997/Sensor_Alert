@@ -16,30 +16,23 @@ pas <- pas_createNew(countryCodes = "IN",
 ## Changing the time zone to Asia/Kolkata
 pas$lastSeenDate <- with_tz(pas$lastSeenDate,tz="Asia/Kolkata")
 
-
-
-SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label),
-                                (!grepl ("SAMOSA_0001",label)),(!grepl ("SAMOSA_0002",label)),(!grepl ("SAMOSA_0005",label)),(!grepl ("SAMOSA_0006",label)),(!grepl ("SAMOSA_0007",label)), (!grepl ("SAMOSA_0008",label)),(!grepl ("SAMOSA_0009",label)), 
-                               (!grepl ("SAMOSA_0012",label)),(!grepl ("SAMOSA_0014",label)),(!grepl ("SAMOSA_0019",label)),(!grepl ("SAMOSA_0026",label)),(!grepl ("SAMOSA_0027",label)),(!grepl ("SAMOSA_0033",label)),(!grepl ("SAMOSA_0036",label)),
-                               (!grepl ("SAMOSA_0040",label)),(!grepl ("SAMOSA_0041",label)),(!grepl ("SAMOSA_0042",label)),(!grepl ("SAMOSA_0043",label)),(!grepl ("SAMOSA_0044",label)),(!grepl ("SAMOSA_0045",label)),(!grepl ("SAMOSA_0046",label)),(!grepl ("SAMOSA_0047",label)),(!grepl ("SAMOSA_0048",label)),
-                               (!grepl ("SAMOSA_0120",label)),(!grepl ("SAMOSA_0121",label)),(!grepl ("SAMOSA_0125",label)),(!grepl ("SAMOSA_0126",label)),(!grepl ("SAMOSA_0127",label)),(!grepl ("SAMOSA_0128",label)),(!grepl ("SAMOSA_0131",label)),(!grepl ("SAMOSA_0132",label)),(!grepl ("SAMOSA_0133",label)),
-                               (!grepl ("SAMOSA_0134",label)),(!grepl ("SAMOSA_0135",label)),(!grepl ("SAMOSA_0136",label)),(!grepl ("SAMOSA_0137",label)),(!grepl ("SAMOSA_0139",label)),(!grepl ("SAMOSA_0140",label)),(!grepl ("SAMOSA_0142",label)),(!grepl ("SAMOSA_0143",label)),(!grepl ("SAMOSA_0144",label)),
-                               (!grepl ("SAMOSA_0145",label)),(!grepl ("SAMOSA_0146",label)),(!grepl ("SAMOSA_0147",label)),(!grepl ("SAMOSA_0148",label)),(!grepl ("SAMOSA_0149",label)),(!grepl ("SAMOSA_0122",label)), (!grepl ("SAMOSA_0010",label)), (!grepl ("SAMOSA_0025",label)),
-                               (!grepl ("SAMOSA_0053",label)), (!grepl ("SAMOSA_0058",label)), (!grepl ("SAMOSA_0163",label)), (!grepl ("SAMOSA_0160",label)), (!grepl ("SAMOSA_0141",label)), (!grepl ("SAMOSA_0164",label)), (!grepl ("SAMOSA_0165",label)), (!grepl ("SAMOSA_0166",label)),
-                               (!grepl ("SAMOSA_0169",label)),(!grepl ("SAMOSA_170",label)))
-Wifi = read.csv("/home/ubuntu/Git/Sensor_Alert/Data/WIFI_SAMOSA.csv",col.names=c("label","Dongle"))
-
+########## Reading the list of sensors that are put for the colocation
+Colocated_Sensors =read.csv("/home/ubuntu/Git/Sensor_Alert/Data/25_Colocated_Sensors_22Sep21.csv")
+####  Selecting the SAMOSA sensors
+SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label))
+#head(Colocated_Sensors)
 
 #Send notification to slack channel
 time <- Sys.time()
 ## Changing the time zone to UTC
 time <- with_tz(time,tz="Asia/Kolkata")
-## Creating one hour lag for the test (If any sensor is inactive for more than an hour we send an alert)
-time_check = time-hours(1)
-## Finding any inactive sensors
-Inactive_sensors = SAMOSA_pas %>% filter(time_check>lastSeenDate) %>% select(label,lastSeenDate)%>%
-left_join(Wifi,by="label")
-
+## Creating 5 minutes lag for the test (If any sensor is inactive for more than an hour we send an alert)
+time_check = time-minutes(5)
+## Finding any inactive sensors in the colocated sensors 
+Inactive_sensors = SAMOSA_pas %>%mutate(Sensor_name=label)%>% filter(label %in% Colocated_Sensors$Sensor_name) %>% 
+filter(time_check>lastSeenDate) %>% left_join(Colocated_Sensors,by="Sensor_name") %>%
+select(Sensor_name,lastSeenDate,Dongles)
+#head(Inactive_sensors)
 dim(Inactive_sensors)[1]
 
 ## Adding the R environment file. This file contains the API used for analysis
