@@ -17,7 +17,7 @@ pas <- pas_createNew(countryCodes = "IN",
 pas$lastSeenDate <- with_tz(pas$lastSeenDate,tz="Asia/Kolkata")
 
 ########## Reading the list of sensors that are put for the colocation
-Colocated_Sensors =read.csv("/home/ubuntu/Git/Sensor_Alert/Data/25_Colocated_Sensors_22Sep21.csv")
+Colocated_Sensors =read.csv("/home/ubuntu/Git/Sensor_Alert/Data/25_Colocated_Sensors_07Oct21.csv")
 ####  Selecting the SAMOSA sensors
 SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label))
 #head(Colocated_Sensors)
@@ -26,8 +26,8 @@ SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label))
 time <- Sys.time()
 ## Changing the time zone to UTC
 time <- with_tz(time,tz="Asia/Kolkata")
-## Creating 5 minutes lag for the test (If any sensor is inactive for more than an hour we send an alert)
-time_check = time-minutes(5)
+## Creating 10 minutes lag for the test (If any sensor is inactive for more than an hour we send an alert)
+time_check = time-minutes(10)
 ## Finding any inactive sensors in the colocated sensors 
 Inactive_sensors = SAMOSA_pas %>%mutate(Sensor_name=label)%>% filter(label %in% Colocated_Sensors$Sensor_name) %>% 
 filter(time_check>lastSeenDate) %>% left_join(Colocated_Sensors,by="Sensor_name") %>%
