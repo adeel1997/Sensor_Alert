@@ -11,13 +11,13 @@ initializeMazamaSpatialUtils("/home/ubuntu/Git/Sensor_Alert/Spatial_data")
 
 ## Settng the Country Code API link and look back days 
 pas <- pas_createNew(countryCodes = "IN",
-                     baseUrl = 'https://www.purpleair.com/json?all=true',lookbackDays = 30,
+                     baseUrl = 'https://www.purpleair.com/json?all=true',lookbackDays = 7,
                      includePWFSL = F)
 ## Changing the time zone to Asia/Kolkata
 pas$lastSeenDate <- with_tz(pas$lastSeenDate,tz="Asia/Kolkata")
 
 ########## Reading the list of sensors that are put for the colocation
-Colocated_Sensors =read.csv("/home/ubuntu/Git/Sensor_Alert/Data/25_Colocated_Sensors_07Oct21.csv")
+Colocated_Sensors =read.csv("/home/ubuntu/Git/Sensor_Alert/Data/25_Colocated_Sensors_27Oct21.csv")
 ####  Selecting the SAMOSA sensors
 SAMOSA_pas = pas%>% pas_filter(!grepl("B",label),grepl("SAMOSA",label))
 #head(Colocated_Sensors)
